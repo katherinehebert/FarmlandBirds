@@ -24,8 +24,6 @@ for(i in 1:ncol(bird)){
   rpart.plot(tree[[i]], box.palette = "#92C5DE",
              shadow.col = "gray", clip.right.labs = FALSE, nn = TRUE)
   dev.off()
-  # save model
-  saveRDS(tree[[i]], paste0("models/",colnames(bird)[i],".RDS"))
 }
 
 #### rerun regression tree for species -----------------------------------------
@@ -36,14 +34,17 @@ coor <- read.csv("data/centroids.csv")
 # bind to land cover dataset
 land <- cbind(land, coor)
 
-rtha <- rpart(bird[,"RTHA"] ~ ., data = land, 
-              method = "poisson",
-              maxdepth = 2, model = TRUE) 
+# overwrite tree for RTHA with one including spatial coordinates
+tree[[which(colnames(bird) %in% "RTHA")]] <- rpart(bird[,"RTHA"] ~ ., data = land, 
+                                                    method = "poisson",
+                                                    maxdepth = 2, model = TRUE) 
 # visualize the tree (and save)
 png("figures/regressiontrees/RTHA.png", 
     width = 600, height = 500)
-rpart.plot(rtha, box.palette = "#92C5DE",
+rpart.plot(tree[[which(colnames(bird) %in% "RTHA")]], box.palette = "#92C5DE",
            shadow.col = "gray", clip.right.labs = FALSE, nn = TRUE)
 dev.off()
-# save model
-saveRDS(rtha, "models/RTHA.RDS")
+
+# save list of models
+saveRDS(tree, "outputs/regressiontrees.RDS")
+
