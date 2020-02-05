@@ -3,7 +3,6 @@
 
 # load regression tree models
 tree <- readRDS("outputs/regressiontrees.RDS") 
-#NOTE: not available due to stored bird abundance data.
 
 # pull out variables selected for tree construction
 vars = lapply(tree, function(x) levels(droplevels(x$frame$var, "<leaf>")))

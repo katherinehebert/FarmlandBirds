@@ -7,8 +7,7 @@ rm(list=ls())
 # load packages
 require(spdep)
 
-# read bird data
-# NOTE: Available upon request.
+# read bird site x species abundance data
 
 # read spatial coordinates of agricultural subdivisions (centroids)
 coor <- as.matrix(read.csv("data/centroids.csv"))
