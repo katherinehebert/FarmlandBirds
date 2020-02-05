@@ -2,9 +2,6 @@
 # from the Ontario Breeding Bird Atlas (OBBA) between 2001 and 2005.
 # (Supplementary figure)
 
-# clear workspace
-rm(list=ls())
-
 # load packages
 require(ggplot2)
 require(tidyverse)

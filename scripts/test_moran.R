@@ -1,9 +1,6 @@
 # Script to calculate Moran's I to detect spatial autocorrelation
 # (Supplementary figure)
 
-# clear workspace
-rm(list=ls())
-
 # load packages
 require(spdep)
 
