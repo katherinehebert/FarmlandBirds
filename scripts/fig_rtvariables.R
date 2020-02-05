@@ -67,4 +67,6 @@ df2$value = as.integer(round(df2$value, digits = 1))
 )
 # save plots side-by-side
 gridExtra::grid.arrange(gg.var, gg.imp, ncol=2)
-ggsave("figures/rtvariables.png", gridExtra::grid.arrange(gg.var, gg.imp, ncol=2))
+ggsave("figures/rtvariables.png", 
+       gridExtra::grid.arrange(gg.var, gg.imp, ncol=2),
+       width = 8, height = 6.5)
